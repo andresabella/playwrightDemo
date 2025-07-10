@@ -10,9 +10,8 @@ test('test the sauce demo page', async ({ page }) => {
 
   await loginPage.enterUsername('standard_user');
   await loginPage.enterPassword('secret_sauce');
-  await page.screenshot({ path: 'screenshots/login.png', fullPage: true });
   await loginPage.clickLoginButton();
   await inventoryPage.validateShoppingCart();
-  await page.screenshot({ path: 'screenshots/homePage.png', fullPage: true });
+  
 });
 
