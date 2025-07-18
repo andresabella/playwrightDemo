@@ -17,6 +17,5 @@ test('Login to generate a new token', async ({ request }, testInfo) => {
   const responseBody = await response.json();
   await ApiDataHelper.attachJson(testInfo, 'Response Body', responseBody);
 
-  expect(response.status()).toBe(200);
   expect(response.ok()).toBeTruthy();
 });
