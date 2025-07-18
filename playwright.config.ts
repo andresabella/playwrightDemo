@@ -26,10 +26,6 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     headless: true,
-    /* Base URL to use in actions like `await page.goto('/')`. */
-    // baseURL: 'http://localhost:3000',
-
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on',
     screenshot: 'on',
     video: 'on',
@@ -39,6 +35,7 @@ export default defineConfig({
   projects: [
     {
       name: 'chrome',
+      testIgnore: /.*\.api\.spec\.ts/, // Ignora los tests de API en este proyecto
       use: { ...devices['Desktop Chrome'] },
     },
 
@@ -56,9 +53,26 @@ export default defineConfig({
     /* Test against mobile viewports. */
      {
        name: 'Mobile Chrome',
-       use: { ...devices['Pixel 5'] },
+       testIgnore: /.*\.api\.spec\.ts/, // Ignora los tests de API en este proyecto
+      use: { ...devices['Pixel 5'] },
      },
-    // {
+     {
+        name: 'api',
+        testMatch: /.*\.api\.spec\.ts/,
+        use: {
+          baseURL: 'https://reqres.in',
+          headless: true,
+          screenshot: 'off',
+          trace: 'off',
+          video: 'off',
+          extraHTTPHeaders: {
+            'Accept': 'application/vnd.github.v3+json',
+            'x-api-key': 'reqres-free-v1',
+            'Authorization': `token ${process.env.API_TOKEN}`,
+            'Content-Type': 'application/json',
+          },
+        },
+      },
     //   name: 'Mobile Safari',
     //   use: { ...devices['iPhone 12'] },
     // },
