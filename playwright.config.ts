@@ -34,7 +34,7 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chrome',
+      name: 'Web chrome Desktop',
       testIgnore: /.*\.api\.spec\.ts/, // Ignora los tests de API en este proyecto
       use: { ...devices['Desktop Chrome'] },
     },
@@ -52,10 +52,15 @@ export default defineConfig({
 
     /* Test against mobile viewports. */
      {
-       name: 'Mobile Chrome',
+       name: 'Mobile Web Android',
        testIgnore: /.*\.api\.spec\.ts/, // Ignora los tests de API en este proyecto
-      use: { ...devices['Pixel 5'] },
+       use: { ...devices['Pixel 5'] },
      },
+     {
+      name: 'Mobile Web iOS',
+      testIgnore: /.*\.api\.spec\.ts/,
+      use: { ...devices['iPhone 12'] },
+    },
      {
         name: 'api',
         testMatch: /.*\.api\.spec\.ts/,
@@ -73,9 +78,7 @@ export default defineConfig({
           },
         },
       },
-    //   name: 'Mobile Safari',
-    //   use: { ...devices['iPhone 12'] },
-    // },
+      
 
     /* Test against branded browsers. */
     // {
